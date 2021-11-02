@@ -2,11 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import Header from './Header';
 import Words from './Words';
-/*  
-    API Websites
-    1. https://labs.bible.org/api/?passage=random&type=json (Verses)
-    2. https://english.api.rakuten.net/ajith/api/holy-bible?endpoint=53aa5debe4b0a9b1348db996 (Chapters) 
-*/
 
 class View extends Component {
     constructor(props) {
@@ -53,8 +48,6 @@ class View extends Component {
 
     getRandomChapter() {
         let chapter = Math.floor(Math.random() * 21) + 1;
-        // let link = `https://ajith-holy-bible.p.rapidapi.com/GetChapter?Book=John&chapter=${chapter}`;
-
         let link = `https://labs.bible.org/api/?passage=John%20${chapter}`;
         axios
             .get(link)
@@ -84,11 +77,6 @@ class View extends Component {
                     <option value='verse'>Verse</option>
                     <option value='chapter'>Chapter</option>
                 </select>
-                {/* <button
-                    className='btn btn-success pull-right'
-                    name='button'
-                    type='submit'
-                    onClick={() => { this.getRandomVerse()}}>Get words of life</button> */}
                 <Words
                     verse={this.state.verse}
                     chapter={this.state.chapter}
